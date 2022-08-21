@@ -32,6 +32,15 @@ services:
     - es
     deploy:
       replicas: 1
+  fluentd:
+    image: aolweny/fluentd-custom:latest
+    environment:
+      SERVICE_TAG: "service.*"
+      ELASTICSEARCH_HOST: es
+    deploy:
+      replicas: 1
+    networks:
+      - es-net
 
 volumes:
   es-data:
